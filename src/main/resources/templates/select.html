@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="form" action="#" th:action="@{select}" th:object="${user1}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Name" id="name">
+    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <input type="text" th:field="*{age}" id="age" placeholder="Age">
+    <select size="2" th:field="*{roles}" multiple="multiple">
+        <option th:each="role :${roleSet}" th:value="${role.id}" th:text="${role.name}"></option>
+    </select>
+    <button type="submit">INSERT</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>age</th>
+        <th>roles</th>
+    </tr>
+    <tbody>
+    <!--   for (Todo todo: todos) {  -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text=${user.age}></td>
+        <td>
+            <select size="2" name="roles" form="form">
+                <option th:each="role :${user.roles}" disabled th:text="${role}"></option>
+            </select>
+        </td>
+        <td>
+        <td><a th:href="@{update/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{delete/{id}(id=${user.id})}">Delete</a></td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/user">userINFO</a>
+<a href="/logout">Logout</a>
+</form>
+</body>
+</html>

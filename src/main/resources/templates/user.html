@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="userInfo">
+<span th:text="${session.userInfo}">
+</span>
+    <select size="2" name="roles" form="userInfo">
+        <option th:each="role :${session.userInfo.roles}" disabled th:text="${role}"></option>
+    </select>
+    </select>
+</form>
+<a href="/logout">Logout</a>
+</body>
+</html>

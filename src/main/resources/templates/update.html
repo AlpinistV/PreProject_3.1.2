@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" id="update" th:action="@{/admin/select}" th:object="${userById}" method="POST">
+    <h2> Update user </h2>
+
+    <input type="text" th:field="*{id}" hidden th:value='${userById.id}'/>
+    <input type="text" th:field="*{name}" th:value='${userById.name}'/>
+    <input type="text" th:field="*{password}" th:value='${userById.password}'/>
+    <input type="text" th:field="*{age}" th:value='${userById.age}'/>
+    <select size="2" th:field="*{roles}" multiple="multiple">
+        <option th:each="role :${roleSet}" th:value="${role.id}" th:text="${role.name}"></option>
+    </select>
+    <button type="submit">UPDATE</button>
+</form>
+</body>
+</html>
